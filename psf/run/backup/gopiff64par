@@ -1,0 +1,47 @@
+#!/bin/bash
+INSTALL=/home/dfa/sobreira/alsina/sw
+START_PATH=/home/dfa/sobreira/alsina/DESWL/psf
+OUTPUT_PATH=/home2/dfa/sobreira/alsina/ourcatalogs
+TAG=y3a1-v23
+
+source /home/sw/masternode/intel/2015/install/composerxe/bin/compilervars.sh intel64
+source /home/sw/masternode/intel/2015/install/mpi/impi/5.1.2.150/bin64/mpivars.sh
+
+export PATH=/home/dfa/sobreira/alsina/sw/pyhton/2714/install/bin:$PATH
+export PYTHONPATH=$PYTHONPATH:/home/dfa/sobreira/alsina/sw/galsim/install/lib/python2.7/site-packages
+export PATH=/home/dfa/sobreira/alsina/sw/cfitsio/install/bin:$PATH
+export LD_LIBRARY_PATH=/home/dfa/sobreira/alsina/sw/cfitsio/install/lib:/home/dfa/sobreira/alsina/sw/ccfits/25/install/lib:/home/dfa/sobreira/alsina/sw/tmv/install/lib:/home/dfa/sobreira/alsina/sw/boost/166/install/lib:$LD_LIBRARY_PATH
+
+echo $VNODENUM
+
+#informar o numero de processos totais
+TOTALP=64
+#total de simulacoes
+TOTALS=216
+
+#divisao de tarefas
+F=0
+
+let F=$TOTALS/$TOTALP
+
+cd /home/dfa/sobreira/alsina/DESWL/psf/run
+
+
+inicio=0;
+fim=0;
+
+if [ $VNODENUM -eq 0 ]
+then
+   inicio=0
+   fim=$F
+else
+   let inicio=$VNODENUM*$F
+   let fim=$inicio+$F
+
+fi
+
+
+for(( n=$inicio ; n< $fim ; n++ ))
+do
+   $INSTALL/pyhton/2714/install/bin/python $START_PATH/run_piff_andres.py --file=$START_PATH/astro/riz/zone$n.riz --tag=$TAG --work=$OUTPUT_PATH/$TAG --pixmappy_dir=$START_PATH/astro  --sex_dir=$INSTALL/sextractor/2195/install/bin --sex_config=$START_PATH/y3.sex --sex_params=$START_PATH/sex.param_piff --sex_filter=$START_PATH/sex.conv --sex_nnw=$START_PATH/sex.nnw --findstars_dir=$INSTALL/deswl_shapelets/install/bin --findstars_config=$START_PATH/y3.config --base_exposures=$START_PATH/exposures-ccds-Y3A1_COADD.fits --tapebump_file=$START_PATH/mask_ccdnum.txt --mag_cut=1 --max_mag=21 --reserve=0.2 --use_ngmix --piff_exe=$INSTALL/pyhton/2714/install/bin/piffify --piff_config=$START_PATH/piff.yaml --rm_files=1 --blacklist=0 --clear_output=0 --get_psfex --scratch=$OUTPUT_PATH/$TAG-scratch
+done
