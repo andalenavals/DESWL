@@ -11,3 +11,7 @@ testing*
 kj_temp
 redo_exp
 *.pkl
+*.fits
+*.fit
+*.#*
+*~

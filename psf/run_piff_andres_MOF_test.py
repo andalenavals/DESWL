@@ -1145,7 +1145,7 @@ def main():
 
     # A listing Erin made of all the exposures in Y3 used in meds
     # files, meds = Multiepoch data structures
-    all_exp = fitsio.read('/data/catalogs/exposures-ccds-Y3A1_COADD.fits')
+    all_exp = fitsio.read('/home/dfa/sobreira/alsina/DESWL/psf/exposures-ccds-Y3A1_COADD.fits')
     #PrettyPrint(all_exp)
     # Switch to native endians, so pandas doesn't complain.
     all_exp = all_exp.astype(all_exp.dtype.newbyteorder('='))

@@ -1,0 +1,33 @@
+/home/dfa/sobreira/alsina/DESWL/psf/read_psf_cats_andres_threshold_e.py:219: RuntimeWarning: invalid value encountered in less
+  good = (abs(dT/T) < 0.1) & (abs(de1) < 0.1) & (abs(de2) < 0.1)
+nbins = 32, min,max sep = 0.5..300.923 arcmin, bin_size = 0.2
+varg = 0.000271: sig_sn (per component) = 0.016473
+Starting process GG auto-correlations for cat irz:decat.
+Using 16 threads.
+Building GField from cat irz:decat
+Starting 1024 jobs.
+nbins = 32, min,max sep = 0.5..300.923 arcmin, bin_size = 0.2
+varg1 = 0.000744: sig_sn (per component) = 0.027280
+varg2 = 0.000271: sig_sn (per component) = 0.016473
+Starting process GG cross-correlations for cats irz:ecat, irz:decat.
+Using 16 threads.
+Building GField from cat irz:ecat
+Starting 1024 jobs.
+nbins = 32, min,max sep = 0.5..300.923 arcmin, bin_size = 0.2
+varg = 0.000001: sig_sn (per component) = 0.000926
+Starting process GG auto-correlations for cat irz:dtcat.
+Using 16 threads.
+Building GField from cat irz:dtcat
+Starting 1024 jobs.
+nbins = 32, min,max sep = 0.5..300.923 arcmin, bin_size = 0.2
+varg1 = 0.000271: sig_sn (per component) = 0.016473
+varg2 = 0.000001: sig_sn (per component) = 0.000926
+Starting process GG cross-correlations for cats irz:decat, irz:dtcat.
+Using 16 threads.
+Starting 1024 jobs.
+nbins = 32, min,max sep = 0.5..300.923 arcmin, bin_size = 0.2
+varg1 = 0.000744: sig_sn (per component) = 0.027280
+varg2 = 0.000001: sig_sn (per component) = 0.000926
+Starting process GG cross-correlations for cats irz:ecat, irz:dtcat.
+Using 16 threads.
+Starting 1024 jobs.

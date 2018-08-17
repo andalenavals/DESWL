@@ -1,0 +1,19 @@
+#!/bin/bash
+INSTALL=/home/dfa/sobreira/alsina/sw
+INPUT_PATH=/home/dfa/sobreira/alsina/DESWL/psf
+OUTPUT_PATH=/home2/dfa/sobreira/alsina/ourcatalogs
+TAG=y3a1-v10-maxmag22
+
+source /home/sw/masternode/intel/2015/install/composerxe/bin/compilervars.sh intel64
+source /home/sw/masternode/intel/2015/install/mpi/impi/5.1.2.150/bin64/mpivars.sh
+
+export PATH=/home/dfa/sobreira/alsina/sw/pyhton/2714/install/bin:$PATH
+export PYTHONPATH=$PYTHONPATH:/home/dfa/sobreira/alsina/sw/galsim/install/lib/python2.7/site-packages
+export PATH=/home/dfa/sobreira/alsina/sw/cfitsio/install/bin:$PATH
+export LD_LIBRARY_PATH=/home/dfa/sobreira/alsina/sw/cfitsio/install/lib:/home/dfa/sobreira/alsina/sw/ccfits/25/install/lib:/home/dfa/sobreira/alsina/sw/tmv/install/lib:/home/dfa/sobreira/alsina/sw/boost/166/install/lib:$LD_LIBRARY_PATH
+
+echo $VNODENUM
+cd /home/dfa/sobreira/alsina/DESWL/psf/run
+$INSTALL/pyhton/2714/install/bin/python $INPUT_PATH/run_piff_andres_MOF_test.py --file=$INPUT_PATH/run/zone029_$VNODENUM.riz --tag=$TAG --work=$OUTPUT_PATH/$TAG --pixmappy=$INPUT_PATH/zone029.astro.orig --bands=grizY  --sex_dir=$INSTALL/sextractor/2195/install/bin --sex_config=$INPUT_PATH/y3.sex --sex_params=$INPUT_PATH/sex.param_piff --sex_filter=$INPUT_PATH/sex.conv --sex_nnw=$INPUT_PATH/sex.nnw --findstars_dir=$INSTALL/deswl_shapelets/install/bin --findstars_config=$INPUT_PATH/y3.config --tapebump_file=$OUTPUT_PATH/$TAG/mask_ccdnum.txt --mag_cut=0 --max_mag=22 --reserve=0.2 --use_ngmix --run_piff=1 --piff_exe=$INSTALL/pyhton/2714/install/bin/piffify --piff_config=$INPUT_PATH/piff_andres.yaml --rm_files=1 --coad_catalog=$INPUT_PATH/MOF/Zone29_COADD_MOF.fits --star_flag='star_flag2' 
+
+

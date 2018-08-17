@@ -1,0 +1,45 @@
+/home/dfa/sobreira/alsina/sw/pyhton/2714/install/lib/python2.7/site-packages/numpy/core/fromnumeric.py:2957: RuntimeWarning: Mean of empty slice.
+  out=out, **kwargs)
+/home/dfa/sobreira/alsina/sw/pyhton/2714/install/lib/python2.7/site-packages/numpy/core/_methods.py:80: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+/home/dfa/sobreira/alsina/sw/pyhton/2714/install/lib/python2.7/site-packages/numpy/core/_methods.py:135: RuntimeWarning: Degrees of freedom <= 0 for slice
+  keepdims=keepdims)
+/home/dfa/sobreira/alsina/sw/pyhton/2714/install/lib/python2.7/site-packages/numpy/core/_methods.py:105: RuntimeWarning: invalid value encountered in true_divide
+  arrmean, rcount, out=arrmean, casting='unsafe', subok=False)
+/home/dfa/sobreira/alsina/sw/pyhton/2714/install/lib/python2.7/site-packages/numpy/core/_methods.py:127: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+/home/dfa/sobreira/alsina/sw/pyhton/2714/install/lib/python2.7/site-packages/numpy/core/_methods.py:80: RuntimeWarning: invalid value encountered in cdouble_scalars
+  ret = ret.dtype.type(ret / rcount)
+/home/dfa/sobreira/alsina/DESWL/psf/read_psf_cats_andres_threshold_epiff.py:123: RuntimeWarning: invalid value encountered in less
+  data = data[ (np.sqrt(data['piff_e1']**2 + data['piff_e2']**2) <threshold)]
+nbins = 32, min,max sep = 0.5..300.923 arcmin, bin_size = 0.2
+varg = 0.000233: sig_sn (per component) = 0.015264
+Starting process GG auto-correlations for cat irz:decat.
+Using 16 threads.
+Building GField from cat irz:decat
+Starting 1024 jobs.
+nbins = 32, min,max sep = 0.5..300.923 arcmin, bin_size = 0.2
+varg1 = 0.000577: sig_sn (per component) = 0.024030
+varg2 = 0.000233: sig_sn (per component) = 0.015264
+Starting process GG cross-correlations for cats irz:ecat, irz:decat.
+Using 16 threads.
+Building GField from cat irz:ecat
+Starting 1024 jobs.
+nbins = 32, min,max sep = 0.5..300.923 arcmin, bin_size = 0.2
+varg = 0.000001: sig_sn (per component) = 0.000813
+Starting process GG auto-correlations for cat irz:dtcat.
+Using 16 threads.
+Building GField from cat irz:dtcat
+Starting 1024 jobs.
+nbins = 32, min,max sep = 0.5..300.923 arcmin, bin_size = 0.2
+varg1 = 0.000233: sig_sn (per component) = 0.015264
+varg2 = 0.000001: sig_sn (per component) = 0.000813
+Starting process GG cross-correlations for cats irz:decat, irz:dtcat.
+Using 16 threads.
+Starting 1024 jobs.
+nbins = 32, min,max sep = 0.5..300.923 arcmin, bin_size = 0.2
+varg1 = 0.000577: sig_sn (per component) = 0.024030
+varg2 = 0.000001: sig_sn (per component) = 0.000813
+Starting process GG cross-correlations for cats irz:ecat, irz:dtcat.
+Using 16 threads.
+Starting 1024 jobs.

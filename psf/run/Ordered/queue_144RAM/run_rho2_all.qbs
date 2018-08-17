@@ -27,5 +27,5 @@ INPUT_PATH=/home2/dfa/sobreira/alsina/catalogs
 OUTPUT_PATH=/home2/dfa/sobreira/alsina/catalogs/output
 TAG=y3a1-v29
 
-$INSTALL/pyhton/2714/install/bin/python $START_PATH/run_rho2_outand.py --file=$START_PATH/ally3.riz --tag=$TAG --work=$INPUT_PATH/$TAG --outpath=$OUTPUT_PATH/$TAG/allzones --bands=riz #--bandcombo
+$INSTALL/pyhton/2714/install/bin/python $START_PATH/run_rho2_outand.py --file=$START_PATH/ally3.riz --tag=$TAG --work=$INPUT_PATH/$TAG --outpath=$OUTPUT_PATH/$TAG/allzones --bands=riz --use_reserved #--bandcombo  --frac=0.1
 
