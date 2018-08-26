@@ -7,11 +7,11 @@ testing*
 *.dat
 *.fits
 *.out
+*.err
 *.wqlog
 kj_temp
 redo_exp
 *.pkl
-*.fits
 *.fit
 *.#*
 *~
