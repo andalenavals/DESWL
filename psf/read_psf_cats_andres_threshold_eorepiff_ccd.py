@@ -45,8 +45,6 @@ def read_data(exps, work, keys, limit_bands=None, single_ccd=None , threshold=0.
     n_good_obj = 0
     n_bad_obj = 0
 
-    n_reject_ccds = 0
-
     for exp in sorted(exps):
 
         expnum = int(exp)
@@ -124,8 +122,9 @@ def read_data(exps, work, keys, limit_bands=None, single_ccd=None , threshold=0.
             print('Initial number of stars',  len(data))
             for cnum in range(1, 63):
                 dataux =  data[data['ccdnum']==int(cnum)]
-                eccdaux =  np.mean(np.sqrt(dataux['piff_e1']**2 + dataux['piff_e2']**2) )
-                if (eccdaux >   threshold):             
+                eccdaux_piff =  np.mean(np.sqrt(dataux['piff_e1']**2 + dataux['piff_e2']**2) )
+                eccdaux_obs =  np.mean(np.sqrt(dataux['obs_e1']**2 + dataux['obs_e2']**2) )
+                if ( (eccdaux_piff >   threshold)| (eccdaux_obs>threshold)):            
                     data = data[data['ccdnum']!=cnum]
                     print('Blacklisting stars in ccdnum',  cnum,  'from exposure ',  expnum )
             print('Actual number of stars after threshold',  len(data))
