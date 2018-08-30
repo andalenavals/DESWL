@@ -1,11 +1,11 @@
 #!/bin/bash
 #PBS -M alsina@ifi.unicamp.br
 #PBS -m abe
-#PBS -N par144RAM
-#PBS -e par144RAM.err
-#PBS -o par144RAM.out
-#PBS -q par144RAM
-#PBS -l nodes=1:ppn=16
+#PBS -N par64a
+#PBS -e par64a.err
+#PBS -o par64a.out
+#PBS -q par64
+#PBS -l nodes=4:ppn=16
 
 source /home/sw/masternode/intel/2015/install/composerxe/bin/compilervars.sh intel64
 source /home/sw/masternode/intel/2015/install/mpi/impi/5.1.2.150/bin64/mpivars.sh
@@ -24,15 +24,8 @@ cd /home/dfa/sobreira/alsina/DESWL/psf/run
 INSTALL=/home/dfa/sobreira/alsina/sw
 START_PATH=/home/dfa/sobreira/alsina/DESWL/psf
 INPUT_PATH=/home2/dfa/sobreira/alsina/catalogs
-OUTPUT_PATH=/home2/dfa/sobreira/alsina/catalogs
-TAG=y3a1-v23
+OUTPUT_PATH=/home2/dfa/sobreira/alsina/catalogs/output
+TAG=y3a1-v29
 
-#for(( n=76 ; n<= 215 ; n++ ))
-#do
-#    $INSTALL/pyhton/2714/install/bin/python $START_PATH/run_rho2.py --file=$START_PATH/astro/riz/zone$n.riz --tag=$TAG --work=$INPUT_PATH/$TAG
-#    wait
-#    $INSTALL/pyhton/2714/install/bin/python $INPUT_PATH/plot_rho_outand.py --file=$INPUT_PATH/astro/riz/zone$n.riz --tag=rho2 --tag=$TAG --work=$INPUT_PATH/$TAG --outpath=$OUTPUT_PATH/output/zone_$n/rho
-#    wait
-#done
+$INSTALL/pyhton/2714/install/bin/python $START_PATH/run_rho2_outand_ellipfilter_eorepiff_ccd.py --file=$START_PATH/ally3.riz --tag=$TAG --work=$INPUT_PATH/$TAG --outpath=$OUTPUT_PATH/$TAG/test4b_bleccd_eorepiff/allzones_e0.04 --bands=riz --threshold=0.04 --use_reserved #--bandcombo
 
-$INSTALL/pyhton/2714/install/bin/python $START_PATH/run_rho2_outand.py --file=$START_PATH/astro/all_zones.riz --tag=$TAG --work=$INPUT_PATH/$TAG --bands=riz --outpath=$OUTPUT_PATH/output/$TAG/allzones

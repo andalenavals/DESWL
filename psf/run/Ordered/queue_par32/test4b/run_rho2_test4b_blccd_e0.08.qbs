@@ -2,12 +2,11 @@
 # while loops
 #PBS -M alsina@ifi.unicamp.br
 #PBS -m abe
-#PBS -N par72RAM
-#PBS -e par72RAM.err
-#PBS -o par72RAM.out
-#PBS -q par72RAM
-#PBS -l nodes=1:ppn=8
-
+#PBS -N par32a
+#PBS -e par32a.err
+#PBS -o par32a.out
+#PBS -q par32
+#PBS -l nodes=4:ppn=8
 
 source /home/sw/masternode/intel/2015/install/composerxe/bin/compilervars.sh intel64
 source /home/sw/masternode/intel/2015/install/mpi/impi/5.1.2.150/bin64/mpivars.sh
@@ -25,12 +24,9 @@ cd /home/dfa/sobreira/alsina/DESWL/psf/run
 
 INSTALL=/home/dfa/sobreira/alsina/sw
 START_PATH=/home/dfa/sobreira/alsina/DESWL/psf
-INPUT_PATH=/home2/dfa/sobreira/alsina/catalogs/output
+INPUT_PATH=/home2/dfa/sobreira/alsina/catalogs
 OUTPUT_PATH=/home2/dfa/sobreira/alsina/catalogs/output
 TAG=y3a1-v29
 
-for(( n=1 ; n<= 215 ; n++ ))
-do
-    $INSTALL/pyhton/2714/install/bin/python $START_PATH/plot_rho_outand.py --work=$INPUT_PATH/$TAG/byzone/zone_$n/ --outpath=$OUTPUT_PATH/$TAG/byzone/zone_$n/rho
-    wait
-done
+$INSTALL/pyhton/2714/install/bin/python $START_PATH/run_rho2_outand_ellipfilter_eorepiff_ccd.py --file=$START_PATH/ally3.riz --tag=$TAG --work=$INPUT_PATH/$TAG --outpath=$OUTPUT_PATH/$TAG/test4b_bleccd_eorepiff/allzones_e0.08 --bands=riz --threshold=0.08 --use_reserved #--bandcombo
+

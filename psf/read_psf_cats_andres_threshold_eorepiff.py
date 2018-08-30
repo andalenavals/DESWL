@@ -135,8 +135,7 @@ def read_data(exps, work, keys, limit_bands=None, single_ccd=None , threshold=0.
         print('ngood = ',ngood)
 
         mask = (flag & NOT_STAR) == 0
-        ##MODIFY
-        #mask &= ~np.in1d(ccdnums, BAD_CCDS)
+        mask &= ~np.in1d(ccdnums, BAD_CCDS)
 
         #SKIPING CANNON REGION.
         #IsInCannon = ( (data['ra'] <  0) & (data['dec'] > -10 ) )

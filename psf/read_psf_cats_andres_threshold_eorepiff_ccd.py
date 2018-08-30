@@ -116,18 +116,7 @@ def read_data(exps, work, keys, limit_bands=None, single_ccd=None , threshold=0.
         if single_ccd:
             print('Enter in single_ccd mode')
             data = data[data['ccdnum']==single_ccd]
-
-        if threshold:
-            print('Blacklisting ccds. Defining a threshold in ellipticities')
-            print('Initial number of stars',  len(data))
-            for cnum in range(1, 63):
-                dataux =  data[data['ccdnum']==int(cnum)]
-                eccdaux_piff =  np.mean(np.sqrt(dataux['piff_e1']**2 + dataux['piff_e2']**2) )
-                eccdaux_obs =  np.mean(np.sqrt(dataux['obs_e1']**2 + dataux['obs_e2']**2) )
-                if ( (eccdaux_piff >   threshold)| (eccdaux_obs>threshold)):            
-                    data = data[data['ccdnum']!=cnum]
-                    print('Blacklisting stars in ccdnum',  cnum,  'from exposure ',  expnum )
-            print('Actual number of stars after threshold',  len(data))
+            
             
         flag = data[prefix+'_flag'].astype(int)
         ntot = len(data)
@@ -140,8 +129,7 @@ def read_data(exps, work, keys, limit_bands=None, single_ccd=None , threshold=0.
         print('ngood = ',ngood)
 
         mask = (flag & NOT_STAR) == 0
-        ##MODIFY
-        #mask &= ~np.in1d(ccdnums, BAD_CCDS)
+        mask &= ~np.in1d(ccdnums, BAD_CCDS)
 
         #SKIPING CANNON REGION.
         #IsInCannon = ( (data['ra'] <  0) & (data['dec'] > -10 ) )
@@ -219,10 +207,23 @@ def read_data(exps, work, keys, limit_bands=None, single_ccd=None , threshold=0.
             print('mean e2 = %f.'%(np.mean(e2[used])))
             n_reject_mean_e2 += 1
             #continue
-    
+
+        neglected_ccds = []
+        if threshold:
+            for cnum in range(1, 63):
+                dataux =  data[data['ccdnum']==int(cnum)]
+                eccdaux_piff =  np.mean(np.sqrt(dataux['piff_e1']**2 + dataux['piff_e2']**2) )
+                eccdaux_obs = np.mean(np.sqrt(dataux['obs_e1']**2 + dataux['obs_e2']**2) )
+                if ( (eccdaux_piff > threshold)| (eccdaux_obs>threshold)):              
+                    neglected_ccds.append(int(cnum))
+                    #print('Blacklisting stars in ccdnum',  cnum,  'from exposure ',  expnum )
+        print("List of neglected ccds", neglected_ccds)
+
+            
         # Filter out egregiously bad values.  Just in case.
         good = (abs(dT/T) < 0.1) & (abs(de1) < 0.1) & (abs(de2) < 0.1)
         n1 = np.sum(mask)
+        mask &= ~np.in1d(ccdnums, neglected_ccds) ##suspicius ccds modify andres
         mask = mask & good
         n2 = np.sum(mask)
         print('"good" filter removed %d/%d objects'%(n1-n2,n1))
